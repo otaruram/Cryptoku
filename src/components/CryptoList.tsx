@@ -106,16 +106,19 @@ const CryptoList = () => {
         </div>
 
         {/* Crypto Cards - Mobile Optimized */}
-        <div className="space-y-3">
+        <div className="space-y-3 select-none">
           {cryptoData.map((crypto) => (
             <Card
               key={crypto.id}
-              className="bg-card border-border hover:border-primary/50 transition-all duration-300 hover:shadow-[0_4px_20px_hsl(var(--primary)/0.15)] overflow-hidden group"
+              className="bg-card border-border hover:border-primary/50 transition-all duration-300 hover:shadow-[0_4px_20px_hsl(var(--primary)/0.15)] overflow-hidden group cursor-default touch-none active:scale-[0.98]"
+              style={{ userSelect: 'none', WebkitUserSelect: 'none', touchAction: 'none' }}
+              onPointerDown={(e) => e.preventDefault()}
+              onClick={(e) => e.preventDefault()}
             >
-              <div className="p-4 flex items-center justify-between">
+              <div className="p-4 flex items-center justify-between pointer-events-none">
                 <div className="flex items-center gap-4 flex-1">
                   {/* Rank */}
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-secondary border border-primary/30 group-hover:border-primary/60 transition-colors">
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-secondary border border-primary/30 group-hover:border-primary/60 group-active:border-primary transition-colors">
                     <span className="text-primary font-bold text-sm">
                       {crypto.rank}
                     </span>
@@ -143,9 +146,9 @@ const CryptoList = () => {
                 </div>
               </div>
 
-              {/* Shine effect on hover */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
+              {/* Gold shine effect on hover/touch */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-500 pointer-events-none">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] group-active:translate-x-[100%] transition-transform duration-1000" />
               </div>
             </Card>
           ))}
